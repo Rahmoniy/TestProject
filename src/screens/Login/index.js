@@ -1,37 +1,22 @@
-import React, {useCallback, useRef} from 'react';
-import styles from './styles';
-import {Button} from '../../components';
-import {useTranslation} from 'react-i18next';
-import {View, Text, TextInput, Image} from 'react-native';
+import React, {useState} from 'react';
 import NavigationService from '../../navigators/NavigationService';
-import api from '../../api';
-import {useDispatch} from 'react-redux';
-import {main} from '../../store/slices';
-import {get} from 'lodash';
-import ErrorModal from '../../components/Modals/ErrorModal';
-import axios from 'axios';
+import {View, Text, TextInput} from 'react-native';
+import {useTranslation} from 'react-i18next';
+import {Button} from '../../components';
+import styles from './styles';
 
 const Login = () => {
-  const {setMe, setToken} = main.actions;
-
-  const errorRef = useRef();
-  const getErrorRef = useCallback(ref => {
-    errorRef.current = ref;
-  }, []);
-
   const {t} = useTranslation();
-  const dispatch = useDispatch();
 
-  const [login, setLogin] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
 
   const loginProfile = () => {
     NavigationService.reset('home');
+    //Misol uchun
 
-    // setIsLoading(true);
     // api
-    //   .post('https://api.bis-pro.com/api/login', {
+    //   .post('login', {
     //     UserName: login,
     //     Password: password,
     //     Company: 'CHINWAKIL',
@@ -60,13 +45,6 @@ const Login = () => {
     <View style={styles.container}>
       <View style={styles.mainCard}>
         <View>
-          <View style={styles.topLogoCard}>
-            <Image
-              source={require('../../assets/images/logo.png')}
-              resizeMode="contain"
-              style={styles.img}
-            />
-          </View>
           <Text style={styles.topMiniTitle}>{t('Вход')}</Text>
           <Text style={styles.titleInput}>{t('Логин')}</Text>
           <TextInput
@@ -82,14 +60,8 @@ const Login = () => {
             defaultValue={password}
           />
         </View>
-        <Button
-          isLoading={isLoading}
-          style={{marginTop: 10}}
-          onPress={loginProfile}>
-          {t('Вход')}
-        </Button>
+        <Button onPress={loginProfile}>{t('Вход')}</Button>
       </View>
-      <ErrorModal getRef={getErrorRef} />
     </View>
   );
 };

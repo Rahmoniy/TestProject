@@ -1,29 +1,19 @@
-import React, {useEffect, useRef} from 'react';
-import {View, Animated} from 'react-native';
-import styles from './styles';
+import React, {useEffect} from 'react';
 import NavigationService from '../../navigators/NavigationService';
+import {View, Text} from 'react-native';
+import styles from './styles';
 
 const Launch = () => {
-  const logoSize = useRef(new Animated.Value(0.2)).current;
-
   useEffect(() => {
     setTimeout(() => {
       NavigationService.reset('login');
+      // NavigationService bu navigation uchun yasalgan componenta, reset screen ga kirgandan keyin uni orqasidagi barcha screen larni o'chirib tashlidi
     }, 1000);
-    Animated.timing(logoSize, {
-      toValue: 2,
-      duration: 750,
-      useNativeDriver: true,
-    }).start();
   }, []);
 
   return (
     <View style={styles.container}>
-      <Animated.Image
-        source={require('assets/images/big_logo.jpg')}
-        resizeMode={'contain'}
-        style={[styles.logo, {transform: [{scale: logoSize}]}]}
-      />
+      <Text>Launch</Text>
     </View>
   );
 };
