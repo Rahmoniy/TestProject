@@ -1,26 +1,23 @@
-import {View, Text} from 'react-native';
-import React, {useRef} from 'react';
+import {View} from 'react-native';
+import React from 'react';
 import styles from './styles';
 import {Button} from '../../components';
-import SomeBottomSheet from '../../components/BottomSheet/SomeBottomSheet';
+import navigationService from "../../navigators/NavigationService";
 
 const Home = () => {
-  const bottomSheetRef = useRef();
   return (
     <View style={styles.container}>
-      <Text>Home</Text>
       <Button
-        onPress={() => bottomSheetRef.current?.open('yuborilgan malimot')}>
-        Bottomsheet
+        style={styles.button}
+        onPress={() => navigationService.navigate('publicStory')}>
+        Public story
       </Button>
-      <SomeBottomSheet
-        getRef={r => {
-          bottomSheetRef.current = r;
-        }}
-        onConfirm={title => {
-          console.log(title);
-        }}
-      />
+
+      <Button
+        style={styles.button}
+        onPress={() => navigationService.navigate('userStory')}>
+        User story
+      </Button>
     </View>
   );
 };

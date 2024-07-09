@@ -11,4 +11,7 @@ export default StyleSheet.create({
     width: Dimensions.get('screen').width / 2.8,
     height: Dimensions.get('screen').height / 5.3,
   },
+  button: {
+    marginTop: 15,
+  },
 });

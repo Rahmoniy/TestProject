@@ -1,5 +1,6 @@
 import Home from './Home';
 import Launch from './Launch';
-import Login from './Login';
+import UserStory from './UserStory';
+import PublicStory from './PublicStory';
 
-export {Launch, Login, Home};
+export {Launch, Home, PublicStory, UserStory};
